@@ -8,11 +8,20 @@ exports.getMessages = (req, res) => {
             .catch(err => console.error(err))
 }
 
-// Get message by user id
-exports.getMessagesByUserId = (req, res) => {
-    const user_id = req.params
-    console.log(user_id)
-    Message.find(user_id)
+// Get message by message id
+exports.getMessagesByMsgId = (req, res) => {
+    const _id = req.params
+    console.log(_id)
+    Message.find(_id)
+            .then(data => res.json(data))
+            .catch(err => console.error(err))
+}
+
+// Get message by message id
+exports.getUserMgsById = (req, res) => {
+    const id = req.params
+    console.log(id)
+    Message.find(id)
             .then(data => res.json(data))
             .catch(err => console.error(err))
 }

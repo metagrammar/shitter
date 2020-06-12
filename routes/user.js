@@ -8,4 +8,7 @@ router.get('/', userController.getUsers);
 /* GET users by ID. */
 router.get('/:id', userController.getUserId);
 
+/* GET user messages by ID. */
+router.get('/:id_user/message', userController.getUserMsgsById);
+
 module.exports = router;

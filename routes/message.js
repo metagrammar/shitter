@@ -6,6 +6,6 @@ var router = express.Router();
 router.get('/', messageController.getMessages);
 
 /* GET users listing. */
-router.get('/:id_user', messageController.getMessagesByUserId);
+router.get('/:_id', messageController.getMessagesByMsgId);
 
 module.exports = router;
