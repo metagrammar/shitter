@@ -11,4 +11,7 @@ router.get('/:id', userController.getUserId);
 /* GET user messages by ID. */
 router.get('/:id_user/message', userController.getUserMsgsById);
 
+/* POST create user: name, email, password. */
+router.post('/create', userController.createUser);
+
 module.exports = router;
