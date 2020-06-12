@@ -49,10 +49,30 @@ exports.createUser = (req, res) => {
 
         let user = new User ({name: `${req.body.name}`, email: `${req.body.email}`, password: hash})
         user.save((err) => {
-            console.log(err)
+            // console.log(err)
                 if (err) {
                     res.send(err)
-                }
+                } else res.send(user)
         })
     })
+}
+
+// Verify user
+exports.verifyUser = (req, res) =>{
+    User.find({name: `${req.body.name}`})
+        .exec((err, item) => {
+            if (err) {
+                res.send(err, 'User name does not exist')
+            }
+            let pw = req.body.password
+            let hash = item[0].password
+            let check = bcrypt.compareSync(pw, hash)
+
+            if(check) {
+                const token = jwt.sign({ 'name': req.body.name}, process.env.SECRET_TOKEN)
+                res.set('x-token', token).send(token)
+            } else {
+                res.send('Wrong password')
+            }
+        })
 }
