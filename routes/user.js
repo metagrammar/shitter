@@ -11,10 +11,10 @@ router.get('/:id', userController.getUserId);
 /* GET user messages by ID. */
 router.get('/:id_user/message', userController.getUserMsgsById);
 
-/* POST create user: name, email, password. */
+/* POST create user: name, email, password (hashed). */
 router.post('/create', userController.createUser);
 
-/* POST create user: name, email, password. */
+/* POST verify user / password (hash) and set token. */
 router.post('/verify', userController.verifyUser);
 
 module.exports = router;
